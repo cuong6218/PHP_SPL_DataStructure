@@ -31,7 +31,7 @@ function checkPair($maleQueue, $femaleQueue)
 {
     $status = false;
     while (!$status) {
-        $status = $maleQueue->isEmpty() || $femaleQueue->isEmpty();
+        $status = $maleQueue == NULL || $femaleQueue == NULL;
         if ($status) return false;
         else return true;
     }
@@ -41,8 +41,12 @@ function makePair($maleQueue, $femaleQueue)
 {
     $male = $maleQueue->dequeue();
     $female = $femaleQueue->dequeue();
-    if (checkPair($maleQueue, $femaleQueue))
+    if (checkPair($maleQueue, $femaleQueue)){
+        // $maleQueue->dequeue();
+        // $femaleQueue->dequeue();
         echo '<br/>Next couple is ' . $male->getName() . '--' . $female->getName();
+    }
+        
     else echo '<br/>Wait a minutes';
 }
 
@@ -58,6 +62,6 @@ echo '<pre>';
 print_r($femaleQueue);
 echo '</pre>';
 
-for ($i = 0; $i < 10; ++$i) {
+for ($i = 0; $i < 10; $i++) {
     makePair($maleQueue, $femaleQueue);
 }
